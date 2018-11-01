@@ -15,8 +15,8 @@ var AddTodo = React.createClass({
     render: function () {
         
         return (
-            <div className = "cont">
-                <form ref = "form" onSubmit = {this.onSubmit} className = "countdown-form">
+            <div className = "container_footer">
+                <form ref = "form" onSubmit = {this.onSubmit}>
                     <input type = "text" ref = "todo" placeholder = "Enter todo"></input>
                     <button className = "button expanded">Add Todo</button>
                 </form>
