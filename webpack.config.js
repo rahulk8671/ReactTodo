@@ -15,6 +15,7 @@ module.exports = {
             '$': 'jquery',
             'jQuery': 'jquery'
         })
+        
     ],
     output: {
         path: __dirname,
