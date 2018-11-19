@@ -38,12 +38,6 @@ export var todosReducer = (state = [], action) => {
             return state.map((todo) => {
                 if(action.id === todo.id) {
                     var nextCompleted = !todo.completed;
-                    var c1 = {
-                        completed: nextCompleted
-                    }
-                    var c2 = {
-                        completedAt: nextCompleted ? moment().unix() : undefined
-                    }
                     return Object.assign({}, todo, {completed: nextCompleted, completedAt: nextCompleted ? moment().unix() : undefined});//{
                         // ...todo,
                         // completed: nextCompleted,
