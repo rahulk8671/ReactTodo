@@ -9,6 +9,8 @@ var actions = require('actions');
 var store = require('configureStore').configure();
 var TodoAPI = require('TodoAPI');
 
+//import './../playground/index';
+
 store.subscribe(() => {
     console.log('new state', store.getState());
 
