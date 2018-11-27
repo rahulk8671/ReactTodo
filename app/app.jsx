@@ -11,14 +11,16 @@ var TodoAPI = require('TodoAPI');
 
 //import './../playground/index';
 
-store.subscribe(() => {
-    console.log('new state', store.getState());
+// store.subscribe(() => {
+//     console.log('new state', store.getState());
 
-    TodoAPI.setTodos(store.getState().todos);
-});
+//     TodoAPI.setTodos(store.getState().todos);
+// });
 
-var initialTodos = TodoAPI.getTodos();
-store.dispatch(actions.addTodos(initialTodos));
+// var initialTodos = TodoAPI.getTodos();
+// store.dispatch(actions.addTodos(initialTodos));
+
+store.dispatch(actions.startAddTodos());
 
 // store.dispatch(actions.addTodo('Clean the yard'));
 // store.dispatch(actions.setSearchText('yard'));

@@ -28,16 +28,17 @@ export var todosReducer = (state = [], action) => {
                 ...state,
                 action.todo
             ];
-        case 'TOGGLE_TODO':
+        case 'UPDATE_TODO':
             return state.map((todo) => {
                 if(action.id === todo.id) {
-                    var nextCompleted = !todo.completed;
-                    return Object.assign({}, todo, {completed: nextCompleted, completedAt: nextCompleted ? moment().unix() : undefined});//{
-                        // ...todo,
-                        // completed: nextCompleted,
-                        // completedAt: nextCompleted ? moment().unix() : undefined
+                    return Object.assign({}, todo, action.updates);
+                    // var nextCompleted = !todo.completed;
+                    // return Object.assign({}, todo, {completed: nextCompleted, completedAt: nextCompleted ? moment().unix() : undefined});//{
+                    //     // ...todo,
+                    //     // completed: nextCompleted,
+                    //     // completedAt: nextCompleted ? moment().unix() : undefined
                         
-                    //};
+                    // //};
                 } else {
                     return todo;
                 }
