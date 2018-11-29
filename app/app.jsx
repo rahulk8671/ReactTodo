@@ -14,8 +14,11 @@ import firebase from 'app/firebase';
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+        store.dispatch(actions.login(user.uid));
+        store.dispatch(actions.startAddTodos());
         hashHistory.push('/todos');
     } else {
+        store.dispatch(actions.logout());
         hashHistory.push('/');
     }
 })
@@ -31,7 +34,6 @@ firebase.auth().onAuthStateChanged((user) => {
 // var initialTodos = TodoAPI.getTodos();
 // store.dispatch(actions.addTodos(initialTodos));
 
-store.dispatch(actions.startAddTodos());
 
 // store.dispatch(actions.addTodo('Clean the yard'));
 // store.dispatch(actions.setSearchText('yard'));
