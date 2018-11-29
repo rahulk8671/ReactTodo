@@ -13,11 +13,14 @@ export var TodoList = React.createClass({
                     <p className = "container-message">Nothing to do...</p>
                 )
             }
+            
             return TodoAPI.filterTodos(todos, showCompleted, searchText).map((todo) => {
                 return (
                     <Todo key = {todo.id} {...todo} /*onToggle = {this.props.onToggle}*/ /> 
                 )
             });
+            
+            
         };
         return (
             <div>
