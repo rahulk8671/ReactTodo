@@ -10,6 +10,15 @@ var store = require('configureStore').configure();
 var TodoAPI = require('TodoAPI');
 
 import Login from 'Login';
+import firebase from 'app/firebase';
+
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        hashHistory.push('/todos');
+    } else {
+        hashHistory.push('/');
+    }
+})
 
 //import './../playground/index';
 
@@ -32,6 +41,20 @@ store.dispatch(actions.startAddTodos());
 require('style!css!foundation-sites/dist/foundation.min.css')
 $(document).foundation();
 
+var requireLogin = (nextState, replace, next) => {
+    if (!firebase.auth().currentUser) {
+        replace('/');
+    }
+    next();
+} 
+
+var redirectIfLoggedIn = (nextState, replace, next) => {
+    if (firebase.auth().currentUser) {
+        replace('/todos');
+    }
+    next();
+} 
+
 //app css
 require('style!css!sass!applicationStyles')
 
@@ -39,8 +62,8 @@ ReactDOM.render(
     <Provider store = {store}>
         <Router history = {hashHistory}>
             <Route path = "/">
-                <Route path = "todos" component = {TodoApp}/>
-                <IndexRoute component = {Login}/>
+                <Route path = "todos" component = {TodoApp} onEnter = {requireLogin}/>
+                <IndexRoute component = {Login} onEnter = {redirectIfLoggedIn}/>
             </Route>
         </Router>
     </Provider>,
