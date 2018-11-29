@@ -98,6 +98,7 @@ export var startLogin = () => {
 export var startLogout = () => {
     return (dispatch, getState) => {
         return firebase.auth().signOut().then(() => {
+            dispatch(deleteTodos());
             console.log('logged out');
         })
     }
@@ -113,5 +114,11 @@ export var login = (uid) => {
 export var logout = () => {
     return {
         type: 'LOGOUT',
+    }
+}
+
+export var deleteTodos = () => {
+    return {
+        type: 'DELETE_TODOS'
     }
 }
