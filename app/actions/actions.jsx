@@ -25,11 +25,13 @@ export var startAddTodo = (text) => {
             completedAt: null
         };
         var uid = getState().auth.uid;
-        var todoRef = firebaseRef.child('users/'+uid+'/todos').push(todo);
+        // var todoRef = firebaseRef.child('users/'+uid+'/todos').push(todo);
 
-        return todoRef.then(() => {
-            dispatch(addTodo((Object.assign({}, todo, {id: todoRef.key}))));
-        });
+        // return todoRef.then(() => {
+        //     dispatch(addTodo((Object.assign({}, todo, {id: Math.random()}))));
+        // });
+
+        dispatch(addTodo((Object.assign({}, todo, {id: Math.random()}))));
     };
 };
 
@@ -57,14 +59,16 @@ export var addTodos = (todos) => {
 export var startToggleTodo = (id, completed) => {
     return (dispatch, getState) => {
         var uid = getState().auth.uid;
-        var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
+        // var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
         var updates = {
             completed,
             completedAt: completed ? moment().unix() : null
         };
-        return todoRef.update(updates).then(() => {
-            dispatch(updateTodo(id, updates));
-        });
+        // return todoRef.update(updates).then(() => {
+        //     dispatch(updateTodo(id, updates));
+        // });
+
+        dispatch(updateTodo(id, updates));
     };
 };
 
